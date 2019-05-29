@@ -7,6 +7,7 @@
                 <h1>Chỉnh sửa khách hàng</h1>
             </div>
             <div class="col-12">
+                <p style='color:green'>{{ (isset($success)) ? $success : '' }}</p>
                 <form method="post" action="{{ route('customers.update', $customer->id) }}">
                     @csrf
                     <div class="form-group">
@@ -14,7 +15,7 @@
                         <input type="text" class="form-control" name="name" value="{{ $customer->name }}" required>
                     </div>
                     <div class="form-group">
-                        <label">Email</label>
+                        <label>Email</label>
                         <input type="email" class="form-control" name="email" value="{{ $customer->email }}" required>
                     </div>
                     <div class="form-group">
@@ -36,6 +37,13 @@
                     <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
                     <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Hủy</button>
                 </form>
+                <div class="error-message">
+                    @if ($errors->any())
+                        @foreach($errors->all() as $nameError)
+                            <p style="color:red">{{ $nameError }}</p>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </div>

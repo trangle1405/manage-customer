@@ -7,6 +7,7 @@ use App\City;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\FormExampleRequest;
 
 class CustomerController extends Controller
 {
@@ -43,7 +44,7 @@ class CustomerController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(FormExampleRequest $request)
     {
         $customer = new Customer();
         $customer->name = $request->input('name');
@@ -77,7 +78,7 @@ class CustomerController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(FormExampleRequest $request, $id)
     {
         $customer = Customer::findOrFail($id);
         $customer->name = $request->input('name');
@@ -147,4 +148,5 @@ class CustomerController extends Controller
 
 
     }
+
 }
